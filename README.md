@@ -1,12 +1,12 @@
-# Integrantes:
+### Integrantes:
   * Bernardo de Souza Silva // 202108004081
   * 
 
-# Disciplina: ANÁLISE E COMPLEXIDADE DE ALGORITMOS (IBM3121)
+### Disciplina: ANÁLISE E COMPLEXIDADE DE ALGORITMOS (IBM3121)
 
-# Curso: Engenharia da Computação
+### Curso: Engenharia da Computação
 
-# Professor: Cassius Figueiredo
+### Professor: Cassius Figueiredo
 
 # 🧠 Projeto: Algoritmos de Busca em Grafos (BFS e DFS) com API Flask
 
