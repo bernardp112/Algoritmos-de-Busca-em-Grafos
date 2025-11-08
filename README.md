@@ -79,7 +79,7 @@ O servidor será iniciado em:
 2. **Testar a rota /bfs**
 
   Requisição:
-    ```bash
+   ```bash
     curl -X GET http://127.0.0.1:5000/bfs \
          -H "Content-Type: application/json" \
          -d '{
@@ -98,9 +98,9 @@ O servidor será iniciado em:
                   [1,0,0,0,0,1,0,0,0,0]
               ]
           }'
-    ```
+   ```
   Resposta esperada (exemplo):
-    ```bash
+   ```bash
     {
         "niveis": {
             "A": 2,
@@ -131,12 +131,12 @@ O servidor será iniciado em:
             ]
         ]
     }
-    ```
+   ```
     
 3. **Testar a rota /dfs**
    
   Requisição:
-    ```bash
+   ```bash
     curl -X GET http://127.0.0.1:5000/dfs \
          -H "Content-Type: application/json" \
          -d '{
@@ -258,7 +258,7 @@ O servidor será iniciado em:
             }
         }
     }
-    ```
+   ```
 
 4. **Testar localmente sem o servidor**
 
