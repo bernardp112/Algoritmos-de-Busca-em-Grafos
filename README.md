@@ -8,6 +8,8 @@
 
 ### Professor: Cassius Figueiredo
 
+---
+
 # 🧠 Projeto: Algoritmos de Busca em Grafos (BFS e DFS) com API Flask
 
 Este projeto implementa dois algoritmos clássicos de busca em grafos — **BFS (Busca em Largura)** e **DFS (Busca em Profundidade)** — com uma **API Flask** que permite executar ambos via requisições HTTP, além de um script de teste para uso local.
