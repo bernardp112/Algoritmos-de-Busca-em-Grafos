@@ -275,7 +275,7 @@ Certifique-se de ter instalado:
 | Arquivo                | Descrição                                                                                                                                   |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | **`app.py`**           | Servidor Flask com duas rotas GET (`/bfs` e `/dfs`) que processam o grafo e retornam os resultados em JSON.                                 |
-| **`bfs.py`**           | Implementação do algoritmo **Busca em Largura (Breadth-First Search)**, retornando componentes, árvore BFS e níveis dos vértices.           |
+| **`bfs.py`**           | Implementação do algoritmo **Busca em Largura (Breadth-First Search)**, retornando ordem da visita e níveis dos vértices.                   |
 | **`dfs.py`**           | Implementação do algoritmo **Busca em Profundidade (Depth-First Search)**, incluindo tempos de descoberta/finalização e arestas de retorno. |
 | **`teste.py`**         | Script de teste para rodar localmente e verificar o comportamento dos algoritmos sem precisar da API.                                       |
 | **`requirements.txt`** | Lista das dependências mínimas para rodar o projeto (`flask` e `collections`).                                                              |
