@@ -64,201 +64,201 @@ Certifique-se de ter instalado:
 
 1. **Rodar o servidor Flask**
 
-Execute o comando:
+ Execute o comando:
+ 
+   ```bash
+   python app.py
+   ```
 
-  ```bash
-  python app.py
-  ```
-
-O servidor será iniciado em:
-
-  ```bash
-  http://127.0.0.1:5000
-  ```
+ O servidor será iniciado em:
+ 
+   ```bash
+   http://127.0.0.1:5000
+   ```
 
 2. **Testar a rota /bfs**
 
-  Requisição:
-   ```bash
-    curl -X GET http://127.0.0.1:5000/bfs \
-         -H "Content-Type: application/json" \
-         -d '{
-              "vertices": ["A","B","C","D","E","F","G","H","I","J"],
-              "verticeInicial": "B",
-              "matriz": [
-                  [0,0,0,1,1,1,0,0,0,1],
-                  [0,0,1,0,1,0,0,0,0,0],
-                  [0,1,0,0,1,0,0,0,0,0],
-                  [1,0,0,0,1,0,0,0,0,0],
-                  [1,1,1,1,0,1,0,0,0,0],
-                  [1,0,0,0,1,0,0,0,0,1],
-                  [0,0,0,0,0,0,0,1,1,0],
-                  [0,0,0,0,0,0,1,0,1,0],
-                  [0,0,0,0,0,0,1,1,0,0],
-                  [1,0,0,0,0,1,0,0,0,0]
-              ]
-          }'
-   ```
-  Resposta esperada (exemplo):
-   ```bash
-    {
-        "niveis": {
-            "A": 2,
-            "B": 0,
-            "C": 1,
-            "D": 2,
-            "E": 1,
-            "F": 2,
-            "G": 0,
-            "H": 1,
-            "I": 1,
-            "J": 3
-        },
-        "ordem": [
-            [
-                "B",
-                "C",
-                "E",
-                "A",
-                "D",
-                "F",
-                "J"
-            ],
-            [
-                "G",
-                "H",
-                "I"
-            ]
-        ]
-    }
-   ```
+   Requisição:
+    ```bash
+     curl -X GET http://127.0.0.1:5000/bfs \
+          -H "Content-Type: application/json" \
+          -d '{
+               "vertices": ["A","B","C","D","E","F","G","H","I","J"],
+               "verticeInicial": "B",
+               "matriz": [
+                   [0,0,0,1,1,1,0,0,0,1],
+                   [0,0,1,0,1,0,0,0,0,0],
+                   [0,1,0,0,1,0,0,0,0,0],
+                   [1,0,0,0,1,0,0,0,0,0],
+                   [1,1,1,1,0,1,0,0,0,0],
+                   [1,0,0,0,1,0,0,0,0,1],
+                   [0,0,0,0,0,0,0,1,1,0],
+                   [0,0,0,0,0,0,1,0,1,0],
+                   [0,0,0,0,0,0,1,1,0,0],
+                   [1,0,0,0,0,1,0,0,0,0]
+               ]
+           }'
+    ```
+   Resposta esperada (exemplo):
+    ```bash
+     {
+         "niveis": {
+             "A": 2,
+             "B": 0,
+             "C": 1,
+             "D": 2,
+             "E": 1,
+             "F": 2,
+             "G": 0,
+             "H": 1,
+             "I": 1,
+             "J": 3
+         },
+         "ordem": [
+             [
+                 "B",
+                 "C",
+                 "E",
+                 "A",
+                 "D",
+                 "F",
+                 "J"
+             ],
+             [
+                 "G",
+                 "H",
+                 "I"
+             ]
+         ]
+     }
+    ```
     
 3. **Testar a rota /dfs**
    
-  Requisição:
-   ```bash
-    curl -X GET http://127.0.0.1:5000/dfs \
-         -H "Content-Type: application/json" \
-         -d '{
-              "vertices": ["A","B","C","D","E","F","G","H","I","J"],
-              "verticeInicial": "B",
-              "matriz": [
-                  [0,0,0,1,1,1,0,0,0,1],
-                  [0,0,1,0,1,0,0,0,0,0],
-                  [0,1,0,0,1,0,0,0,0,0],
-                  [1,0,0,0,1,0,0,0,0,0],
-                  [1,1,1,1,0,1,0,0,0,0],
-                  [1,0,0,0,1,0,0,0,0,1],
-                  [0,0,0,0,0,0,0,1,1,0],
-                  [0,0,0,0,0,0,1,0,1,0],
-                  [0,0,0,0,0,0,1,1,0,0],
-                  [1,0,0,0,0,1,0,0,0,0]
-              ]
-          }'
-    ```
-  Resposta esperada (exemplo):
+   Requisição:
     ```bash
-    {
-        "arestas_retorno": [
-            [
-                "D",
-                "E"
-            ],
-            [
-                "F",
-                "E"
-            ],
-            [
-                "J",
-                "A"
-            ],
-            [
-                "E",
-                "B"
-            ],
-            [
-                "I",
-                "G"
-            ]
-        ],
-        "arvore": [
-            [
-                "B",
-                "C"
-            ],
-            [
-                "C",
-                "E"
-            ],
-            [
-                "E",
-                "A"
-            ],
-            [
-                "A",
-                "D"
-            ],
-            [
-                "A",
-                "F"
-            ],
-            [
-                "F",
-                "J"
-            ],
-            [
-                "G",
-                "H"
-            ],
-            [
-                "H",
-                "I"
-            ]
-        ],
-        "tempos": {
-            "A": {
-                "descoberta": 4,
-                "finalizacao": 11
-            },
-            "B": {
-                "descoberta": 1,
-                "finalizacao": 14
-            },
-            "C": {
-                "descoberta": 2,
-                "finalizacao": 13
-            },
-            "D": {
-                "descoberta": 5,
-                "finalizacao": 6
-            },
-            "E": {
-                "descoberta": 3,
-                "finalizacao": 12
-            },
-            "F": {
-                "descoberta": 7,
-                "finalizacao": 10
-            },
-            "G": {
-                "descoberta": 15,
-                "finalizacao": 20
-            },
-            "H": {
-                "descoberta": 16,
-                "finalizacao": 19
-            },
-            "I": {
-                "descoberta": 17,
-                "finalizacao": 18
-            },
-            "J": {
-                "descoberta": 8,
-                "finalizacao": 9
-            }
-        }
-    }
-   ```
+     curl -X GET http://127.0.0.1:5000/dfs \
+          -H "Content-Type: application/json" \
+          -d '{
+               "vertices": ["A","B","C","D","E","F","G","H","I","J"],
+               "verticeInicial": "B",
+               "matriz": [
+                   [0,0,0,1,1,1,0,0,0,1],
+                   [0,0,1,0,1,0,0,0,0,0],
+                   [0,1,0,0,1,0,0,0,0,0],
+                   [1,0,0,0,1,0,0,0,0,0],
+                   [1,1,1,1,0,1,0,0,0,0],
+                   [1,0,0,0,1,0,0,0,0,1],
+                   [0,0,0,0,0,0,0,1,1,0],
+                   [0,0,0,0,0,0,1,0,1,0],
+                   [0,0,0,0,0,0,1,1,0,0],
+                   [1,0,0,0,0,1,0,0,0,0]
+               ]
+           }'
+     ```
+   Resposta esperada (exemplo):
+     ```bash
+     {
+         "arestas_retorno": [
+             [
+                 "D",
+                 "E"
+             ],
+             [
+                 "F",
+                 "E"
+             ],
+             [
+                 "J",
+                 "A"
+             ],
+             [
+                 "E",
+                 "B"
+             ],
+             [
+                 "I",
+                 "G"
+             ]
+         ],
+         "arvore": [
+             [
+                 "B",
+                 "C"
+             ],
+             [
+                 "C",
+                 "E"
+             ],
+             [
+                 "E",
+                 "A"
+             ],
+             [
+                 "A",
+                 "D"
+             ],
+             [
+                 "A",
+                 "F"
+             ],
+             [
+                 "F",
+                 "J"
+             ],
+             [
+                 "G",
+                 "H"
+             ],
+             [
+                 "H",
+                 "I"
+             ]
+         ],
+         "tempos": {
+             "A": {
+                 "descoberta": 4,
+                 "finalizacao": 11
+             },
+             "B": {
+                 "descoberta": 1,
+                 "finalizacao": 14
+             },
+             "C": {
+                 "descoberta": 2,
+                 "finalizacao": 13
+             },
+             "D": {
+                 "descoberta": 5,
+                 "finalizacao": 6
+             },
+             "E": {
+                 "descoberta": 3,
+                 "finalizacao": 12
+             },
+             "F": {
+                 "descoberta": 7,
+                 "finalizacao": 10
+             },
+             "G": {
+                 "descoberta": 15,
+                 "finalizacao": 20
+             },
+             "H": {
+                 "descoberta": 16,
+                 "finalizacao": 19
+             },
+             "I": {
+                 "descoberta": 17,
+                 "finalizacao": 18
+             },
+             "J": {
+                 "descoberta": 8,
+                 "finalizacao": 9
+             }
+         }
+     }
+    ```
 
 4. **Testar localmente sem o servidor**
 
