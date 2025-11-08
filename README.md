@@ -46,17 +46,17 @@ Certifique-se de ter instalado:
   
 2. **Crie e ative um ambiente virtual (opcional, mas recomendado)**
 
-  ```bash
-  python -m venv venv
-  source venv/bin/activate        # Linux / macOS
-  venv\Scripts\activate           # Windows
-  ```
+   ```bash
+   python -m venv venv
+   source venv/bin/activate        # Linux / macOS
+   venv\Scripts\activate           # Windows
+   ```
 
 3. **Instale as dependências**
    
-  ```bash
-  pip install -r requirements.txt
-  ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ---
 
