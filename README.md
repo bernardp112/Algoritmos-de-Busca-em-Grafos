@@ -19,9 +19,13 @@ Este projeto implementa dois algoritmos clássicos de busca em grafos — **BFS 
 ## 📁 Estrutura do Projeto
 
 ├── app.py # Servidor Flask com rotas /bfs e /dfs
+
 ├── bfs.py # Implementação do algoritmo BFS
+
 ├── dfs.py # Implementação do algoritmo DFS
+
 ├── teste.py # Script de teste local (sem servidor)
+
 ├── requirements.txt # Dependências do projeto
 
 
