@@ -1,6 +1,6 @@
 ### Integrantes:
   * Bernardo de Souza Silva // 202108004081
-  * 
+  * Murilo Plombon Piatigorsky // 202202448605
 
 ### Disciplina: ANÁLISE E COMPLEXIDADE DE ALGORITMOS (IBM3121)
 
