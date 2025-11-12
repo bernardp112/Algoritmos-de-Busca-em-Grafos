@@ -12,22 +12,33 @@
 
 # 🧠 Projeto: Algoritmos de Busca em Grafos (BFS e DFS) com API Flask
 
-Este projeto implementa dois algoritmos clássicos de busca em grafos — **BFS (Busca em Largura)** e **DFS (Busca em Profundidade)** — com uma **API Flask** que permite executar ambos via requisições HTTP, além de um script de teste para uso local.
+Este projeto implementa dois algoritmos clássicos de busca em grafos — **BFS (Busca em Largura)** e **DFS (Busca em Profundidade)** — com uma **API Flask** e uma **interface web interativa** que permite:
+- Inserir grafos via JSON
+- Visualizar o grafo renderizado com Cytoscape.js
+- Executar BFS/DFS e ver a execução passo a passo em formato ASCII
+- Visualizar arestas de retorno (back edges) e estrutura de árvore
 
 ---
 
 ## 📁 Estrutura do Projeto
 
-├── app.py # Servidor Flask com rotas /bfs e /dfs
-
-├── bfs.py # Implementação do algoritmo BFS
-
-├── dfs.py # Implementação do algoritmo DFS
-
-├── teste.py # Script de teste local (sem servidor)
-
-├── requirements.txt # Dependências do projeto
-
+```
+Back Grafos/
+├── app.py                      # Servidor Flask com rotas /bfs, /dfs e /
+├── bfs.py                      # Implementação do algoritmo BFS
+├── dfs.py                      # Implementação do algoritmo DFS
+├── visualizacao_ascii.py       # Geração de visualizações ASCII para BFS/DFS
+├── teste.py                    # Script de teste local (sem servidor)
+├── requirements.txt            # Dependências do projeto
+├── templates/
+│   └── index.html             # Interface web principal
+└── static/
+    ├── css/
+    │   └── style.css          # Estilos da interface
+    └── js/
+        ├── main.js            # Lógica principal e gerenciamento de abas
+        └── graph.js           # Renderização do grafo com Cytoscape.js
+```
 
 ---
 
@@ -66,25 +77,38 @@ Certifique-se de ter instalado:
 
 ## 🚀 Execução
 
+### Opção 1: Interface Web (Recomendado)
+
 1. **Rodar o servidor Flask**
 
- Execute o comando:
- 
    ```bash
+   cd "Back Grafos"
    python app.py
    ```
 
- O servidor será iniciado em:
- 
-   ```bash
+   O servidor será iniciado em:
+   
+   ```
    http://127.0.0.1:5000
    ```
 
-2. **Testar a rota /bfs**
+2. **Acessar a interface web**
 
-   Requisição:
-    ```bash
-     curl -X GET http://127.0.0.1:5000/bfs \
+   Abra o navegador e acesse `http://127.0.0.1:5000`
+   
+   **Funcionalidades da interface:**
+   - **Aba "Inserir Grafo"**: Edite o JSON do grafo e execute BFS/DFS
+   - **Aba "Visualizar Grafo"**: Veja o grafo renderizado com Cytoscape.js
+   - **Execução ASCII**: Visualização passo a passo da execução dos algoritmos
+   - **Resposta JSON**: Dados completos retornados pela API
+
+### Opção 2: API via cURL/Postman
+
+1. **Testar a rota /bfs**
+
+   Requisição POST:
+   ```bash
+   curl -X POST http://127.0.0.1:5000/bfs \
           -H "Content-Type: application/json" \
           -d '{
                "vertices": ["A","B","C","D","E","F","G","H","I","J"],
@@ -137,11 +161,11 @@ Certifique-se de ter instalado:
      }
     ```
     
-3. **Testar a rota /dfs**
+2. **Testar a rota /dfs**
    
-   Requisição:
-    ```bash
-     curl -X GET http://127.0.0.1:5000/dfs \
+   Requisição POST:
+   ```bash
+   curl -X POST http://127.0.0.1:5000/dfs \
           -H "Content-Type: application/json" \
           -d '{
                "vertices": ["A","B","C","D","E","F","G","H","I","J"],
@@ -264,30 +288,58 @@ Certifique-se de ter instalado:
      }
     ```
 
-4. **Testar localmente sem o servidor**
+### Opção 3: Teste Local (sem servidor)
 
-   Você pode apenas executar:
-     ```bash
-      python teste.py
-     ```
-   Esse script executa as funções BFS e DFS diretamente e exibe os resultados no terminal.
+Você pode executar os algoritmos diretamente:
+
+```bash
+cd "Back Grafos"
+python teste.py
+```
+
+Esse script executa as funções BFS e DFS diretamente e exibe os resultados no terminal.
 
 ---
 
 ## 🧩 Descrição dos arquivos
 
-| Arquivo                | Descrição                                                                                                                                   |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`app.py`**           | Servidor Flask com duas rotas GET (`/bfs` e `/dfs`) que processam o grafo e retornam os resultados em JSON.                                 |
-| **`bfs.py`**           | Implementação do algoritmo **Busca em Largura (Breadth-First Search)**, retornando ordem da visita e níveis dos vértices.                   |
-| **`dfs.py`**           | Implementação do algoritmo **Busca em Profundidade (Depth-First Search)**, incluindo tempos de descoberta/finalização e arestas de retorno. |
-| **`teste.py`**         | Script de teste para rodar localmente e verificar o comportamento dos algoritmos sem precisar da API.                                       |
-| **`requirements.txt`** | Lista das dependências mínimas para rodar o projeto (`flask` e `collections`).                                                              |
+| Arquivo                      | Descrição                                                                                                                                        |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`app.py`**                 | Servidor Flask com rotas POST (`/bfs` e `/dfs`) que processam o grafo e retornam resultados em JSON + ASCII. Rota GET `/` serve a interface.   |
+| **`bfs.py`**                 | Implementação do algoritmo **Busca em Largura (Breadth-First Search)**, retornando ordem da visita e níveis dos vértices.                       |
+| **`dfs.py`**                 | Implementação do algoritmo **Busca em Profundidade (Depth-First Search)**, incluindo tempos de descoberta/finalização e arestas de retorno.     |
+| **`visualizacao_ascii.py`**  | Gera visualizações ASCII dos algoritmos: BFS exibe ordem de execução `[A0, B1, ...]`, DFS exibe árvore com conectores `├──` e arestas de retorno inline. |
+| **`teste.py`**               | Script de teste para rodar localmente e verificar o comportamento dos algoritmos sem precisar da API.                                           |
+| **`requirements.txt`**       | Lista das dependências do projeto.                                                                                                               |
+| **`templates/index.html`**   | Interface web com abas para inserir grafo e visualizar renderização.                                                                             |
+| **`static/css/style.css`**   | Estilos da interface com suporte a tema claro/escuro.                                                                                            |
+| **`static/js/main.js`**      | Gerenciamento de abas, chamadas à API e exibição de resultados.                                                                                 |
+| **`static/js/graph.js`**     | Renderização do grafo usando Cytoscape.js, com detecção automática de grafos direcionados/não-direcionados.                                     |
 
---
+---
+
+## 🎨 Funcionalidades da Interface
+
+### Visualização ASCII do DFS
+- Árvore hierárquica com conectores unicode (`├──`, `└──`, `│`)
+- Tempos de descoberta e finalização: `S(1/12)`
+- Detecção de arestas bidirecionais (sem seta: `├──`) vs unidirecionais (com seta: `├──>`)
+- Arestas de retorno exibidas inline com `↖ Retorno para X`
+
+### Visualização ASCII do BFS
+- Ordem de execução por nível: `[S0, A1, D1, B2, E2, C3]`
+- Formato compacto mostrando vértice + nível
+
+### Renderização Gráfica
+- Grafo renderizado com Cytoscape.js
+- Detecção automática de grafos direcionados (mostra setas) vs não-direcionados
+- Layout circular para melhor visualização
+
+---
 
 ## 🧪 Tecnologias utilizadas
 
-* Python 3
-* Flask (API REST)
-* Collections (deque)
+* **Backend**: Python 3.8+, Flask
+* **Frontend**: HTML5, CSS3 (com variáveis CSS para temas), JavaScript (Vanilla)
+* **Visualização**: Cytoscape.js 3.28.1
+* **Estruturas de Dados**: Collections (deque)

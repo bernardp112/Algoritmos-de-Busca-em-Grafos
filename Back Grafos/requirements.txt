@@ -1,2 +1,1 @@
-collections
-flask
+Flask>=2.3.0

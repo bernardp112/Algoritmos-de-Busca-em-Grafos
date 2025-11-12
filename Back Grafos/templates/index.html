@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Algoritmos de Busca em Grafos - Demo</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="https://unpkg.com/cytoscape@3.28.1/dist/cytoscape.min.js"></script>
+    <script defer src="/static/js/graph.js"></script>
+  <script defer src="/static/js/dfs.js"></script>
+  <script defer src="/static/js/bfs.js"></script>
+    <script defer src="/static/js/main.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Algoritmos de Busca em Grafos (BFS/DFS)</h1>
+      <p class="help">Cole/edite o JSON do grafo abaixo e clique em Executar. As rotas usam POST.</p>
+
+      <div class="tabs">
+        <button class="tab-button active" data-tab="input">Inserir Grafo</button>
+        <button class="tab-button" data-tab="graph">Visualizar Grafo</button>
+      </div>
+
+      <div class="tab-content active" id="input-tab">
+        <div class="input-section">
+          <h2>Entrada do Grafo</h2>
+          <textarea id="payload" spellcheck="false">{
+  "vertices": ["A", "B", "C", "D", "E", "S"],
+  "verticeInicial": "S",
+  "matriz": [
+    [0, 1, 0, 0, 0, 1],
+    [1, 0, 1, 0, 0, 0],
+    [0, 1, 0, 0, 0, 1],
+    [0, 0, 0, 0, 1, 1],
+    [0, 0, 0, 1, 0, 1],
+    [1, 0, 1, 1, 1, 0]
+  ]
+}</textarea>
+
+          <div class="actions">
+            <button id="btnBFS">Executar BFS</button>
+            <button id="btnDFS">Executar DFS</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="graph-tab">
+        <div class="graph-section">
+          <h2>Visualização do Grafo</h2>
+          <div id="cy"></div>
+        </div>
+      </div>
+
+      <div class="visualization-section">
+        <h2>Execução do Algoritmo</h2>
+        <pre id="ascii-output" style="display: none;"></pre>
+      </div>
+
+      <div class="output-section">
+        <h2>Resposta JSON</h2>
+        <pre id="output">(Sem resposta ainda)</pre>
+      </div>
+    </div>
+
+    <!-- Scripts agora estão modularizados em /static/js -->
+  </body>
+  </html>
