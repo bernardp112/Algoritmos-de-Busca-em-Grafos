@@ -56,8 +56,8 @@ Certifique-se de ter instalado:
 1. **Clone o repositório**
 
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
-   cd nome-do-repositorio
+   git clone https://github.com/bernardp112/Algoritmos-de-Busca-em-Grafos
+   cd Algoritmos-de-Busca-em-Grafos
   
 2. **Crie e ative um ambiente virtual (opcional, mas recomendado)**
 
